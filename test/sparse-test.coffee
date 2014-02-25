@@ -29,6 +29,11 @@ describe 'Sparse', ->
 			sparse = new Sparse 1, 'foo'
 			sparse[0].should.equal 'foo'
 
+		it 'should be settable', ->
+			sparse = new Sparse 10
+			sparse[5] = 'blah'
+			sparse[5].should.equal 'blah'
+
 		describe 'callbacks', ->
 			it 'should use callback with index for filler', ->
 				sparse = new Sparse 1, (index) ->
@@ -43,8 +48,8 @@ describe 'Sparse', ->
 				sparse[9].should.equal 7
 				(typeof sparse[10]).should.equal 'undefined'
 
-			had = {}
 			it 'should optionally lazily prefill', ->
+				had = {}
 				cb = (i) ->
 					had[i] = true
 					i*2
