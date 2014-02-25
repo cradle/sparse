@@ -1,0 +1,14 @@
+{
+  "name": "sparse",
+  "version": "0.0.0",
+  "description": "",
+  "main": "sparse.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "should": "~3.1.3"
+  }
+}
