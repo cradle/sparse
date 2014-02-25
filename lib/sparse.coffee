@@ -1,7 +1,7 @@
 # later = (func) ->
 # 	(index) -> func(index)
 
-module.exports = (length = 0, prefill, lazy = false) ->
+module.exports = (length = 0, prefill) ->
 	got = {}
 	res = {}
 	sparse = []

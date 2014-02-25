@@ -34,12 +34,22 @@ describe 'Sparse', ->
 			sparse[5] = 'blah'
 			sparse[5].should.equal 'blah'
 
+		it 'should not fill past bounds', ->
+			sparse = new Sparse 10, 'oob'
+			(typeof sparse[15]).should.equal 'undefined'
+
 		describe 'callbacks', ->
 			it 'should use callback with index for filler', ->
 				sparse = new Sparse 1, (index) ->
 					index + 'foo'
 				(typeof sparse[0]).should.equal 'string'
 				sparse[0].should.equal '0foo'
+
+			it 'should use callback with index for filler', ->
+				sparse = new Sparse 10, (index) ->
+					index + 'foo'
+				sparse[5] = '5bar'
+				sparse[5].should.equal '5bar'
 
 			it 'should default out of bounds to undefined', ->
 				sparse = new Sparse 10, 7
@@ -53,7 +63,7 @@ describe 'Sparse', ->
 				cb = (i) ->
 					had[i] = true
 					i*2
-				sparse = new Sparse 10, cb, lazy = true
+				sparse = new Sparse 10, cb
 				(typeof had[4]).should.equal 'undefined'
 				sparse[4]
 				had[4].should.equal true
@@ -61,5 +71,5 @@ describe 'Sparse', ->
 				sparse[4].should.equal 8
 
 			it 'should not brake if lazy and non callback', ->
-				sparse = new Sparse 10, 5, lazy = true
+				sparse = new Sparse 10, 5
 				sparse[2].should.equal 5
