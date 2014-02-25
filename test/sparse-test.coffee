@@ -54,3 +54,7 @@ describe 'Sparse', ->
 				had[4].should.equal true
 				(typeof sparse[4]).should.equal 'number'
 				sparse[4].should.equal 8
+
+			it 'should not brake if lazy and non callback', ->
+				sparse = new Sparse 10, 5, lazy = true
+				sparse[2].should.equal 5
