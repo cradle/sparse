@@ -1,13 +1,13 @@
 {
   "name": "sparse",
-  "version": "0.0.0",
-  "description": "",
+  "version": "0.0.1",
+  "description": "Coffeescript array with lazy getters and memoised setters",
   "main": "sparse.js",
   "scripts": {
     "test": "mocha"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Glenn Murray",
+  "license": "MIT",
   "devDependencies": {
     "should": "~3.1.3"
   }
