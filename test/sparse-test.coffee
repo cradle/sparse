@@ -73,3 +73,37 @@ describe 'Sparse', ->
 			it 'should not brake if lazy and non callback', ->
 				sparse = new Sparse 10, 5
 				sparse[2].should.equal 5
+
+			it 'should slice', ->
+				sparse = new Sparse 1000, (i) -> i*i
+				sparse[500].should.equal 250000
+				sparse.slice(10,20)[0].should.equal 100
+
+			describe 'push unshift', ->
+				ids = sparse = null
+				beforeEach ->
+					ids = [5,10,100,151]
+					sparse = new Sparse ids.length, (i) -> ids[i]
+
+				it 'should map', ->
+					sparse[2].should.equal 100
+
+				it 'should not move when map is pushed', ->
+					ids.push[191]
+					sparse[3].should.equal 151
+
+				it 'should allow push', ->
+					sparse.push(69)
+					sparse[4].should.equal 69
+
+				it 'should not move when pushed', ->
+					sparse.push(69)
+					sparse[0].should.equal 5
+
+				it 'should allow unshifted', ->
+					sparse.unshift(191)
+					sparse[0].should.equal 191
+
+				it 'should move when unshifted', ->
+					sparse.unshift(191)
+					sparse[3].should.equal 5
